@@ -9,7 +9,12 @@ const authRouter = require('../src/routes/auth.route');
 const moviesRouter = require('../src/routes/movies.route');
 const userPermisionsRouter = require('../src/routes/userPermisions.route');
 
-app.use(cors());
+app.use(cors({
+    origin: '*',  // Allows requests from any origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+}));
+
 app.use(express.static(path.join(__dirname, '/src/public')))
 app.use(express.json());
 app.get('/',(req,res)=>res.send("Movie List Api is working ...."));
